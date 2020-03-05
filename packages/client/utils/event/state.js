@@ -7,8 +7,6 @@ export const FILTER_ONLY_START_DATE = 'FILTER_ONLY_START_DATE'
 export const FILTER_RESET = 'FILTER_RESET'
 
 export const initialState = {
-  today: moment().format('YYYY-MM-DD'),
-  tomorrow: moment().add(1, 'days').format('YYYY-MM-DD'),
   startDate: moment().format('YYYY-MM-DD'),
   endDate: '',
   onlyStartDate: false

@@ -28,10 +28,19 @@ module.exports = {
   fakeEvents: [
     {
       id: 1,
+      title: 'Old Event',
+      dates: [
+        { start: '2020-01-01 12:30', end: '2020-01-31 14:00' }
+      ],
+      tags: ['music', 'free'],
+      createdByUserId: 1
+    },
+    {
+      id: 1,
       title: 'Big Concert',
       dates: [
-        { start: '2019-01-31 12:30', end: '2019-01-31 14:00' },
-        { start: '2019-02-01 12:30', end: '2019-02-01 14:00' }
+        { start: '2020-01-31 12:30', end: '2020-01-31 14:00' },
+        { start: '2020-02-01 12:30', end: '2020-02-01 14:00' }
       ],
       tags: ['music', 'free'],
       createdByUserId: 1
@@ -40,7 +49,7 @@ module.exports = {
       id: 2,
       title: 'Small Concert',
       dates: [
-        { start: '2019-02-31 12:30', end: '2019-02-31 14:00' },
+        { start: '2020-02-31 12:30', end: '2020-02-31 14:00' },
         { start: '2020-03-01 12:30', end: '2020-03-01 14:00' }
       ],
       tags: ['music', 'free'],

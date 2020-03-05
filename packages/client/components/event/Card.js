@@ -5,7 +5,7 @@ export const Card = (props) => {
 
   return (
     <div>
-      <strong>{title}</strong><br />
+      <h3>{title}</h3><br />
       {dates.map(({start, end}, i) =>
         <div key={id + i}>
           <strong>Day</strong>

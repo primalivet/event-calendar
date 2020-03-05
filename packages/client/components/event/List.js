@@ -1,50 +1,24 @@
 import React from 'react'
 import { useQuery } from '@apollo/react-hooks'
-import { gql, NetworkStatus } from 'apollo-boost'
 
 import { useEventFilterState } from '../../utils/event/hooks'
+import { EVENTS_QUERY } from '../../utils/event/query'
 import { Card } from './Card'
 
-const EVENTS_QUERY = gql`
-  query allEvents($after: Int, $before: Int, $first: Int, $last: Int) {
-    allEvents(after: $after, before: $before, first: $first, last: $last) {
-      pageInfo {
-        hasPrevPage
-        hasNextPage
-        startCursor
-        endCursor
-      }
-      edges {
-        node {
-          id
-          title
-          dates {
-            start
-            end
-          }
-          tags
-        }
-        cursor
-      }
-    }
-  }`
-
 export const List = () => {
-  const [{ today, tomorrow, startDate, endDate, onlyStartDate }] = useEventFilterState()
-  const { loading, error, data } = useQuery(EVENTS_QUERY, { 
+  const [filters] = useEventFilterState()
+  const { loading, error, data, refetch } = useQuery(EVENTS_QUERY, {
     variables: {
-      today,
-      tomorrow,
-      startDate,
-      endDate,
-      onlyStartDate,
+      ...filters,
       first: null,
       last: null,
       before: null,
-      after: null,
+      after: null
     },
-    notifyOnNetworkStatusChange: true 
+    notifyOnNetworkStatusChange: true
   })
+  
+  // implement refetch for pagination
 
   if (loading) {
     return (
@@ -59,6 +33,8 @@ export const List = () => {
     )
   }
 
+  console.log(data)
+
   if (data.allEvents && !data.allEvents.edges.length) {
     return (
       <div>
@@ -70,6 +46,10 @@ export const List = () => {
   return (
     <div>
       {data.allEvents.edges && data.allEvents.edges.map(({ node }) => <Card key={node.id} {...node} />)}
+      <div>
+        {data.allEvents.pageInfo.hasPrevPage && <button>Prev</button>}
+        {data.allEvents.pageInfo.hasNextPage && <button>Next</button>}
+      </div>
     </div>
   )
 }

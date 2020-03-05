@@ -37,7 +37,6 @@ module.exports = gql`
   type Query {
     allEvents(
       today: String,
-      tomorrow: String,
       startDate: String,
       endDate: String,
       onlyStartDate: Boolean,
