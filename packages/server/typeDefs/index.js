@@ -40,8 +40,8 @@ module.exports = gql`
       startDate: String,
       endDate: String,
       onlyStartDate: Boolean,
-      after: Int,
-      before: Int,
+      after: String,
+      before: String,
       first: Int,
       last: Int
     ): EventPayload

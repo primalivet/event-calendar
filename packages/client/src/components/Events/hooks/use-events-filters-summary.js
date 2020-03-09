@@ -1,12 +1,10 @@
-import React, { useState, useEffect, useContext } from 'react'
+import { useContext } from 'react'
 import moment from 'moment-timezone'
 
-import { fakeResponse as response } from '../../api'
-import { Context } from './state'
+import { EventsContext } from '../EventsContext'
 
-export const useEventFilterState = () => useContext(Context)
-
-export const useEventFilterHumanReadableSummary = (startDate, endDate, onlyStartDate, today, tomorrow) => {
+const useFilterSummary = () => {
+const { startDate, endDate, onlyStartDate, today, tomorrow } = useContext(EventsContext)
   let summary = `Events that occur ${onlyStartDate ? 'only' : ''} `
 
   if (startDate && !onlyStartDate && !endDate) {
@@ -37,3 +35,5 @@ export const useEventFilterHumanReadableSummary = (startDate, endDate, onlyStart
 
   return summary
 }
+
+export default useFilterSummary
